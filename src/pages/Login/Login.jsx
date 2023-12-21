@@ -5,7 +5,8 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import Link from "@mui/joy/Link";
+import { Link } from "react-router-dom";
+
 
 const Login = () => {
 
@@ -21,7 +22,6 @@ const Login = () => {
 
   return (
     <div>
-      <h1>This is login page</h1>
       <CssVarsProvider>
         <main>
           <Sheet
@@ -68,7 +68,7 @@ const Login = () => {
               <Button type="submit" sx={{ mt: 1 }}>Log in</Button>
             </form>
             <Typography
-              endDecorator={<Link href="/sign-up">Sign up</Link>}
+              endDecorator={<Link className="text-blue-500 hover:underline" to="/register">Sign up</Link>}
               fontSize="sm"
               sx={{ alignSelf: "center" }}
             >
