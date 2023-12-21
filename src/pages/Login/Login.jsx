@@ -5,17 +5,40 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
+  const {logIn} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
     const handleLogin = e =>{
         e.preventDefault();
-        console.log('Event triggered');
+        // console.log('Event triggered');
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
+        // console.log(email, password);
+
+        // =============== firebase login ===================
+        logIn(email, password).then((result) => {
+          const user = result.user;
+          console.log(user);
+          Swal.fire({
+            title: "User Login Successful.",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+          navigate(from, { replace: true });
+        });
 
     }
 

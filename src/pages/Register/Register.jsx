@@ -29,8 +29,8 @@ const Register = () => {
       console.log(loggedUser);
 
       updateUserProfile(name, photo)
-        .then((result) => {
-          console.log(result);
+        .then(() => {
+          // console.log(result);
           Swal.fire(
             "Registration Completed",
             "Thanks for registering",
