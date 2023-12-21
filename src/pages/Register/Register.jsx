@@ -5,32 +5,53 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
 
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, photo, email, password);
+    
+    // ============= firebase regitration ============
 
-    const handleRegister = e =>{
-        e.preventDefault();
-        const name = e.target.name.value;
-        const photo = e.target.photo.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        console.log(name,photo,email,password);
-    }
+    createUser(email, password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
 
-    return (
-        <div>
-            <CssVarsProvider>
+      updateUserProfile(name, photo)
+        .then((result) => {
+          console.log(result);
+          Swal.fire(
+            "Registration Completed",
+            "Thanks for registering",
+            "success"
+          );
+          navigate('/')
+        })
+        .catch((error) => console.log(error));
+    });
+  };
+
+  return (
+    <div>
+      <CssVarsProvider>
         <main>
           <Sheet
             sx={{
               width: 300,
               mx: "auto",
-              my: 4, 
-              py: 3, 
+              my: 4,
+              py: 3,
               px: 2,
               display: "flex",
               flexDirection: "column",
@@ -49,45 +70,35 @@ const Register = () => {
             <form onSubmit={handleRegister} className="flex flex-col gap-4">
               <FormControl>
                 <FormLabel>Your Name</FormLabel>
-                <Input
-                  
-                  name="name"
-                  type="text"
-                  placeholder="your full name"
-                />
+                <Input name="name" type="text" placeholder="your full name" required />
               </FormControl>
               <FormControl>
                 <FormLabel>Profile Photo</FormLabel>
-                <Input
-                  
-                  name="photo"
-                  type="text"
-                  placeholder="url here..."
-                />
+                <Input name="photo" type="text" placeholder="url here..."  required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input
-                  
                   name="email"
                   type="email"
-                  placeholder="tabib@email.com"
+                  placeholder="tabib@email.com" required
                 />
               </FormControl>
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input
-                  
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                />
+                <Input name="password" type="password" placeholder="password"  required/>
               </FormControl>
 
-              <Button type="submit" sx={{ mt: 1 }}>Register</Button>
+              <Button type="submit" sx={{ mt: 1 }}>
+                Register
+              </Button>
             </form>
             <Typography
-              endDecorator={<Link className="text-blue-500 hover:underline" to="/login">Sign In</Link>}
+              endDecorator={
+                <Link className="text-blue-500 hover:underline" to="/login">
+                  Sign In
+                </Link>
+              }
               fontSize="sm"
               sx={{ alignSelf: "center" }}
             >
@@ -96,8 +107,8 @@ const Register = () => {
           </Sheet>
         </main>
       </CssVarsProvider>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Register;
