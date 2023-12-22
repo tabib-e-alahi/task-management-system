@@ -7,22 +7,24 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/" className="text-lg  lg:text-xl text-white font-bold">
+        <NavLink to="/" className="text-lg  lg:text-xl text-black font-bold">
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="text-lg lg:text-xl text-white font-bold">
+        <NavLink className="text-lg lg:text-xl text-black font-bold">
           About
         </NavLink>
       </li>
-      <li>
-        <NavLink className="text-lg lg:text-xl text-white font-bold">
-          Contact
+      {
+        user && <li>
+        <NavLink to={`/dashboard/${user?.email}`} className="text-lg lg:text-xl text-black font-bold">
+          Dashboard
         </NavLink>
       </li>
+      }
       <li>
-        <NavLink className="text-lg lg:text-xl text-white font-bold">
+        <NavLink className="text-lg lg:text-xl text-black font-bold">
           Register
         </NavLink>
       </li>
@@ -40,7 +42,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar fixed z-10 bg-opacity-30  text-white md:px-4 lg:px-10 ">
+    <nav className="navbar  text-white md:px-4 lg:px-10 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
