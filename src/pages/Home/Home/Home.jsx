@@ -1,9 +1,10 @@
+import Banner from "../Banner/Banner";
 
 
 const Home = () => {
     return (
-        <div className="">
-            <h1>This is Home.</h1>
+        <div className="-scroll-mt-16">
+            <Banner></Banner>
         </div>
     );
 };
