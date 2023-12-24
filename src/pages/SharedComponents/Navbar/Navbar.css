@@ -7,6 +7,6 @@ ul a:hover {
   .active:hover {
     background: none !important;
   
-    color: black !important;
-    font-weight: 500 !important;
+    color: #B91C1C !important;
+    font-weight: 700 !important;
   }

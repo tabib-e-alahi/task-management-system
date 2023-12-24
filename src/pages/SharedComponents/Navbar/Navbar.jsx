@@ -7,24 +7,24 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/" className="text-lg  lg:text-xl text-black font-bold">
+        <NavLink to="/" className="text-lg  lg:text-xl text-black font-normal">
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="text-lg lg:text-xl text-black font-bold">
+        <NavLink to='/about' className="text-lg lg:text-xl text-black font-normal">
           About
         </NavLink>
       </li>
       {
         user && <li>
-        <NavLink to={`/dashboard/${user?.email}`} className="text-lg lg:text-xl text-black font-bold">
+        <NavLink to={`/dashboard/${user?.email}`} className="text-lg lg:text-xl text-black font-normal">
           Dashboard
         </NavLink>
       </li>
       }
       <li>
-        <NavLink className="text-lg lg:text-xl text-black font-bold">
+        <NavLink to='/register' className="text-lg lg:text-xl text-black font-normal">
           Register
         </NavLink>
       </li>
@@ -42,7 +42,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar  text-white md:px-4 lg:px-10 ">
+    <nav className="navbar  text-white md:px-4 lg:px-10 lg:pt-6 lg:pb-8">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -71,7 +71,7 @@ const Navbar = () => {
         <a className="text-[#B91C1C] text-3xl font-bold">NxtTask</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 lg:gap-6">{navLinks}</ul>
       </div>
       <div className="navbar-end">
         {user ? (
