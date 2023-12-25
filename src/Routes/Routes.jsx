@@ -7,29 +7,31 @@ import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout></Layout>,
-      children:[
-        {
-            path: "/",
-            element:<Home></Home>
-        },
-        {
-            path: "/login",
-            element:<Login></Login>
-        },
-        {
-            path: "/register",
-            element:<Register></Register>
-        },
-        {
-          path:"/dashboard/:email",
-          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-        }
-      ]
-    },
-    
-  ]);
+  {
+    path: "/",
+    element: <Layout></Layout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
 
-
+  {
+    path: "dashboard/:email",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+  },
+]);
