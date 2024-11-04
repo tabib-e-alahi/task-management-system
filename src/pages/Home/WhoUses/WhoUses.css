@@ -1,0 +1,19 @@
+/* styles.css */
+#user-section {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+.user-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.5s ease-in-out; /* Add a smooth transition effect */
+  }
+  
+  .user-categories {
+    
+    justify-content: space-around;
+    
+    transition: transform 0.5s ease-in-out; /* Add a smooth transition effect */
+  }
+  

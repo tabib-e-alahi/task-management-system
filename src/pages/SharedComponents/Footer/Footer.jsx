@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer footer-center p-10 bg-white rounded">
       <nav className="grid grid-flow-col gap-4  lg:gap-14 text-gray-800 lg:font-medium">
         <Link to='/' className="link link-hover lg:text-2xl">Home</Link>
-        <Link to={`dashboard/${user.email}`} className="link link-hover lg:text-2xl">Dashboard</Link>
+        <Link to={`dashboard/${user?.email}`} className="link link-hover lg:text-2xl">Dashboard</Link>
         <Link to='/about' className="link link-hover lg:text-2xl">About</Link>
         <Link to='/contact' className="link link-hover lg:text-2xl">Contact Us</Link>
       </nav>
